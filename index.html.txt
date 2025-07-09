@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blue Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #6dd5ed, #2193b0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      background: #f0f8ff;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0px 10px 30px rgba(0, 0, 50, 0.2);
+    }
+
+    #display {
+      width: 100%;
+      font-size: 28px;
+      padding: 15px;
+      margin-bottom: 20px;
+      text-align: right;
+      border: none;
+      background: #e0f7fa;
+      border-radius: 10px;
+      box-shadow: inset 0px 2px 5px rgba(0,0,50,0.1);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 70px);
+      gap: 12px;
+    }
+
+    .buttons button {
+      font-size: 20px;
+      padding: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      color: white;
+    }
+
+    .buttons button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .buttons button:active {
+      transform: scale(0.95);
+    }
+
+    .number {
+      background-color: #2196f3;
+    }
+
+    .operator {
+      background-color: #1e88e5;
+    }
+
+    .equal {
+      background-color: #0d47a1;
+    }
+
+    .clear {
+      background-color: #1565c0;
+    }
+
+    .zero {
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <input type="text" id="display" disabled />
+  <div class="buttons">
+    <button class="clear" onclick="clearDisplay()">C</button>
+    <button class="operator" onclick="append('%')">%</button>
+    <button class="operator" onclick="append('/')">/</button>
+    <button class="operator" onclick="append('*')">×</button>
+
+    <button class="number" onclick="append('7')">7</button>
+    <button class="number" onclick="append('8')">8</button>
+    <button class="number" onclick="append('9')">9</button>
+    <button class="operator" onclick="append('-')">−</button>
+
+    <button class="number" onclick="append('4')">4</button>
+    <button class="number" onclick="append('5')">5</button>
+    <button class="number" onclick="append('6')">6</button>
+    <button class="operator" onclick="append('+')">+</button>
+
+    <button class="number" onclick="append('1')">1</button>
+    <button class="number" onclick="append('2')">2</button>
+    <button class="number" onclick="append('3')">3</button>
+    <button class="equal" onclick="calculate()">=</button>
+
+    <button class="number zero" onclick="append('0')">0</button>
+    <button class="number" onclick="append('.')">.</button>
+  </div>
+</div>
+
+<script>
+  function append(value) {
+    document.getElementById("display").value += value;
+  }
+
+  function clearDisplay() {
+    document.getElementById("display").value = "";
+  }
+
+  function calculate() {
+    try {
+      document.getElementById("display").value = 
+        eval(document.getElementById("display").value);
+    } catch {
+      document.getElementById("display").value = "Error";
+    }
+  }
+</script>
+
+</body>
+</html>
